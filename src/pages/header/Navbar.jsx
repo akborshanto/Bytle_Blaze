@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(localStorage.getItem('theme')|| 'light');
   useEffect(() => {
     localStorage.setItem("theme", theme);
     const localTheme = localStorage.getItem("theme");
@@ -61,7 +61,7 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-bold ">
             <li>
-         <NavLink to='/' className={({isActive})=> isActive ?'text-primary font-bold':'font-bold'}>Home</NavLink>
+         <NavLink to='/' className={({isActive})=> isActive ?'text-primary font-bold font-2xl text-red-400':'font-bold'}>Home</NavLink>
             </li>
             <li>
 <NavLink to='/blogs' className={({isActive})=>isActive ? "text-primary font-bold":'font-bold'}>BLOGS</NavLink>
@@ -75,7 +75,8 @@ const Navbar = () => {
           <input
             onClick={handleTheme}
             type="checkbox"
-            value="synthwave"
+            value={theme}
+           checked={theme === 'synthwave'}
             className="toggle theme-controller"
           />
         </div>
